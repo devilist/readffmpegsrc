@@ -1,0 +1,222 @@
+tables.lo: tables.c ../config.h machine.h version.h \
+ C:/Cplusplus/ffmpeg/android-ndk-r15c/platforms/android-21/arch-x86_64/usr/include/stdio.h \
+ C:/Cplusplus/ffmpeg/android-ndk-r15c/platforms/android-21/arch-x86_64/usr/include/sys/cdefs.h \
+ C:/Cplusplus/ffmpeg/android-ndk-r15c/platforms/android-21/arch-x86_64/usr/include/sys/cdefs_elf.h \
+ C:/Cplusplus/ffmpeg/android-ndk-r15c/platforms/android-21/arch-x86_64/usr/include/android/api-level.h \
+ C:/Cplusplus/ffmpeg/android-ndk-r15c/platforms/android-21/arch-x86_64/usr/include/sys/types.h \
+ c:\cplusplus\ffmpeg\android-ndk-r15c\toolchains\x86_64-4.9\prebuilt\windows-x86_64\lib\gcc\x86_64-linux-android\4.9.x\include\stddef.h \
+ c:\cplusplus\ffmpeg\android-ndk-r15c\toolchains\x86_64-4.9\prebuilt\windows-x86_64\lib\gcc\x86_64-linux-android\4.9.x\include\stdint.h \
+ C:/Cplusplus/ffmpeg/android-ndk-r15c/platforms/android-21/arch-x86_64/usr/include/stdint.h \
+ C:/Cplusplus/ffmpeg/android-ndk-r15c/platforms/android-21/arch-x86_64/usr/include/machine/wchar_limits.h \
+ C:/Cplusplus/ffmpeg/android-ndk-r15c/platforms/android-21/arch-x86_64/usr/include/linux/types.h \
+ C:/Cplusplus/ffmpeg/android-ndk-r15c/platforms/android-21/arch-x86_64/usr/include/asm/types.h \
+ C:/Cplusplus/ffmpeg/android-ndk-r15c/platforms/android-21/arch-x86_64/usr/include/asm-generic/types.h \
+ C:/Cplusplus/ffmpeg/android-ndk-r15c/platforms/android-21/arch-x86_64/usr/include/asm-generic/int-ll64.h \
+ C:/Cplusplus/ffmpeg/android-ndk-r15c/platforms/android-21/arch-x86_64/usr/include/asm/bitsperlong.h \
+ C:/Cplusplus/ffmpeg/android-ndk-r15c/platforms/android-21/arch-x86_64/usr/include/asm-generic/bitsperlong.h \
+ C:/Cplusplus/ffmpeg/android-ndk-r15c/platforms/android-21/arch-x86_64/usr/include/linux/posix_types.h \
+ C:/Cplusplus/ffmpeg/android-ndk-r15c/platforms/android-21/arch-x86_64/usr/include/linux/stddef.h \
+ C:/Cplusplus/ffmpeg/android-ndk-r15c/platforms/android-21/arch-x86_64/usr/include/linux/compiler.h \
+ C:/Cplusplus/ffmpeg/android-ndk-r15c/platforms/android-21/arch-x86_64/usr/include/asm/posix_types.h \
+ C:/Cplusplus/ffmpeg/android-ndk-r15c/platforms/android-21/arch-x86_64/usr/include/asm/posix_types_64.h \
+ C:/Cplusplus/ffmpeg/android-ndk-r15c/platforms/android-21/arch-x86_64/usr/include/asm-generic/posix_types.h \
+ C:/Cplusplus/ffmpeg/android-ndk-r15c/platforms/android-21/arch-x86_64/usr/include/sys/sysmacros.h \
+ c:\cplusplus\ffmpeg\android-ndk-r15c\toolchains\x86_64-4.9\prebuilt\windows-x86_64\lib\gcc\x86_64-linux-android\4.9.x\include\stdarg.h \
+ C:/Cplusplus/ffmpeg/android-ndk-r15c/platforms/android-21/arch-x86_64/usr/include/assert.h \
+ C:/Cplusplus/ffmpeg/android-ndk-r15c/platforms/android-21/arch-x86_64/usr/include/stdlib.h \
+ C:/Cplusplus/ffmpeg/android-ndk-r15c/platforms/android-21/arch-x86_64/usr/include/string.h \
+ C:/Cplusplus/ffmpeg/android-ndk-r15c/platforms/android-21/arch-x86_64/usr/include/malloc.h \
+ C:/Cplusplus/ffmpeg/android-ndk-r15c/platforms/android-21/arch-x86_64/usr/include/xlocale.h \
+ C:/Cplusplus/ffmpeg/android-ndk-r15c/platforms/android-21/arch-x86_64/usr/include/alloca.h \
+ C:/Cplusplus/ffmpeg/android-ndk-r15c/platforms/android-21/arch-x86_64/usr/include/strings.h \
+ C:/Cplusplus/ffmpeg/android-ndk-r15c/platforms/android-21/arch-x86_64/usr/include/memory.h \
+ C:/Cplusplus/ffmpeg/android-ndk-r15c/platforms/android-21/arch-x86_64/usr/include/math.h \
+ c:\cplusplus\ffmpeg\android-ndk-r15c\toolchains\x86_64-4.9\prebuilt\windows-x86_64\lib\gcc\x86_64-linux-android\4.9.x\include-fixed\limits.h \
+ c:\cplusplus\ffmpeg\android-ndk-r15c\toolchains\x86_64-4.9\prebuilt\windows-x86_64\lib\gcc\x86_64-linux-android\4.9.x\include-fixed\syslimits.h \
+ C:/Cplusplus/ffmpeg/android-ndk-r15c/platforms/android-21/arch-x86_64/usr/include/limits.h \
+ C:/Cplusplus/ffmpeg/android-ndk-r15c/platforms/android-21/arch-x86_64/usr/include/sys/limits.h \
+ C:/Cplusplus/ffmpeg/android-ndk-r15c/platforms/android-21/arch-x86_64/usr/include/linux/limits.h \
+ C:/Cplusplus/ffmpeg/android-ndk-r15c/platforms/android-21/arch-x86_64/usr/include/sys/syslimits.h \
+ C:/Cplusplus/ffmpeg/android-ndk-r15c/platforms/android-21/arch-x86_64/usr/include/ctype.h \
+ C:/Cplusplus/ffmpeg/android-ndk-r15c/platforms/android-21/arch-x86_64/usr/include/errno.h \
+ C:/Cplusplus/ffmpeg/android-ndk-r15c/platforms/android-21/arch-x86_64/usr/include/linux/errno.h \
+ C:/Cplusplus/ffmpeg/android-ndk-r15c/platforms/android-21/arch-x86_64/usr/include/asm/errno.h \
+ C:/Cplusplus/ffmpeg/android-ndk-r15c/platforms/android-21/arch-x86_64/usr/include/asm-generic/errno.h \
+ C:/Cplusplus/ffmpeg/android-ndk-r15c/platforms/android-21/arch-x86_64/usr/include/asm-generic/errno-base.h \
+ C:/Cplusplus/ffmpeg/android-ndk-r15c/platforms/android-21/arch-x86_64/usr/include/fcntl.h \
+ C:/Cplusplus/ffmpeg/android-ndk-r15c/platforms/android-21/arch-x86_64/usr/include/linux/fadvise.h \
+ C:/Cplusplus/ffmpeg/android-ndk-r15c/platforms/android-21/arch-x86_64/usr/include/linux/fcntl.h \
+ C:/Cplusplus/ffmpeg/android-ndk-r15c/platforms/android-21/arch-x86_64/usr/include/asm/fcntl.h \
+ C:/Cplusplus/ffmpeg/android-ndk-r15c/platforms/android-21/arch-x86_64/usr/include/asm-generic/fcntl.h \
+ C:/Cplusplus/ffmpeg/android-ndk-r15c/platforms/android-21/arch-x86_64/usr/include/linux/uio.h \
+ C:/Cplusplus/ffmpeg/android-ndk-r15c/platforms/android-21/arch-x86_64/usr/include/unistd.h \
+ C:/Cplusplus/ffmpeg/android-ndk-r15c/platforms/android-21/arch-x86_64/usr/include/sys/select.h \
+ C:/Cplusplus/ffmpeg/android-ndk-r15c/platforms/android-21/arch-x86_64/usr/include/sys/time.h \
+ C:/Cplusplus/ffmpeg/android-ndk-r15c/platforms/android-21/arch-x86_64/usr/include/linux/time.h \
+ C:/Cplusplus/ffmpeg/android-ndk-r15c/platforms/android-21/arch-x86_64/usr/include/signal.h \
+ C:/Cplusplus/ffmpeg/android-ndk-r15c/platforms/android-21/arch-x86_64/usr/include/asm/sigcontext.h \
+ C:/Cplusplus/ffmpeg/android-ndk-r15c/platforms/android-21/arch-x86_64/usr/include/linux/signal.h \
+ C:/Cplusplus/ffmpeg/android-ndk-r15c/platforms/android-21/arch-x86_64/usr/include/asm/signal.h \
+ C:/Cplusplus/ffmpeg/android-ndk-r15c/platforms/android-21/arch-x86_64/usr/include/asm-generic/signal-defs.h \
+ C:/Cplusplus/ffmpeg/android-ndk-r15c/platforms/android-21/arch-x86_64/usr/include/asm/siginfo.h \
+ C:/Cplusplus/ffmpeg/android-ndk-r15c/platforms/android-21/arch-x86_64/usr/include/asm-generic/siginfo.h \
+ C:/Cplusplus/ffmpeg/android-ndk-r15c/platforms/android-21/arch-x86_64/usr/include/sys/ucontext.h \
+ C:/Cplusplus/ffmpeg/android-ndk-r15c/platforms/android-21/arch-x86_64/usr/include/sys/user.h \
+ C:/Cplusplus/ffmpeg/android-ndk-r15c/platforms/android-21/arch-x86_64/usr/include/sys/sysconf.h \
+ C:/Cplusplus/ffmpeg/android-ndk-r15c/platforms/android-21/arch-x86_64/usr/include/pathconf.h \
+ C:/Cplusplus/ffmpeg/android-ndk-r15c/platforms/android-21/arch-x86_64/usr/include/sys/stat.h \
+ C:/Cplusplus/ffmpeg/android-ndk-r15c/platforms/android-21/arch-x86_64/usr/include/linux/stat.h \
+ C:/Cplusplus/ffmpeg/android-ndk-r15c/platforms/android-21/arch-x86_64/usr/include/endian.h \
+ C:/Cplusplus/ffmpeg/android-ndk-r15c/platforms/android-21/arch-x86_64/usr/include/sys/endian.h \
+ C:/Cplusplus/ffmpeg/android-ndk-r15c/platforms/android-21/arch-x86_64/usr/include/inttypes.h \
+ ../include/lame.h tables.h
+
+../config.h:
+
+machine.h:
+
+version.h:
+
+C:/Cplusplus/ffmpeg/android-ndk-r15c/platforms/android-21/arch-x86_64/usr/include/stdio.h:
+
+C:/Cplusplus/ffmpeg/android-ndk-r15c/platforms/android-21/arch-x86_64/usr/include/sys/cdefs.h:
+
+C:/Cplusplus/ffmpeg/android-ndk-r15c/platforms/android-21/arch-x86_64/usr/include/sys/cdefs_elf.h:
+
+C:/Cplusplus/ffmpeg/android-ndk-r15c/platforms/android-21/arch-x86_64/usr/include/android/api-level.h:
+
+C:/Cplusplus/ffmpeg/android-ndk-r15c/platforms/android-21/arch-x86_64/usr/include/sys/types.h:
+
+c:\cplusplus\ffmpeg\android-ndk-r15c\toolchains\x86_64-4.9\prebuilt\windows-x86_64\lib\gcc\x86_64-linux-android\4.9.x\include\stddef.h:
+
+c:\cplusplus\ffmpeg\android-ndk-r15c\toolchains\x86_64-4.9\prebuilt\windows-x86_64\lib\gcc\x86_64-linux-android\4.9.x\include\stdint.h:
+
+C:/Cplusplus/ffmpeg/android-ndk-r15c/platforms/android-21/arch-x86_64/usr/include/stdint.h:
+
+C:/Cplusplus/ffmpeg/android-ndk-r15c/platforms/android-21/arch-x86_64/usr/include/machine/wchar_limits.h:
+
+C:/Cplusplus/ffmpeg/android-ndk-r15c/platforms/android-21/arch-x86_64/usr/include/linux/types.h:
+
+C:/Cplusplus/ffmpeg/android-ndk-r15c/platforms/android-21/arch-x86_64/usr/include/asm/types.h:
+
+C:/Cplusplus/ffmpeg/android-ndk-r15c/platforms/android-21/arch-x86_64/usr/include/asm-generic/types.h:
+
+C:/Cplusplus/ffmpeg/android-ndk-r15c/platforms/android-21/arch-x86_64/usr/include/asm-generic/int-ll64.h:
+
+C:/Cplusplus/ffmpeg/android-ndk-r15c/platforms/android-21/arch-x86_64/usr/include/asm/bitsperlong.h:
+
+C:/Cplusplus/ffmpeg/android-ndk-r15c/platforms/android-21/arch-x86_64/usr/include/asm-generic/bitsperlong.h:
+
+C:/Cplusplus/ffmpeg/android-ndk-r15c/platforms/android-21/arch-x86_64/usr/include/linux/posix_types.h:
+
+C:/Cplusplus/ffmpeg/android-ndk-r15c/platforms/android-21/arch-x86_64/usr/include/linux/stddef.h:
+
+C:/Cplusplus/ffmpeg/android-ndk-r15c/platforms/android-21/arch-x86_64/usr/include/linux/compiler.h:
+
+C:/Cplusplus/ffmpeg/android-ndk-r15c/platforms/android-21/arch-x86_64/usr/include/asm/posix_types.h:
+
+C:/Cplusplus/ffmpeg/android-ndk-r15c/platforms/android-21/arch-x86_64/usr/include/asm/posix_types_64.h:
+
+C:/Cplusplus/ffmpeg/android-ndk-r15c/platforms/android-21/arch-x86_64/usr/include/asm-generic/posix_types.h:
+
+C:/Cplusplus/ffmpeg/android-ndk-r15c/platforms/android-21/arch-x86_64/usr/include/sys/sysmacros.h:
+
+c:\cplusplus\ffmpeg\android-ndk-r15c\toolchains\x86_64-4.9\prebuilt\windows-x86_64\lib\gcc\x86_64-linux-android\4.9.x\include\stdarg.h:
+
+C:/Cplusplus/ffmpeg/android-ndk-r15c/platforms/android-21/arch-x86_64/usr/include/assert.h:
+
+C:/Cplusplus/ffmpeg/android-ndk-r15c/platforms/android-21/arch-x86_64/usr/include/stdlib.h:
+
+C:/Cplusplus/ffmpeg/android-ndk-r15c/platforms/android-21/arch-x86_64/usr/include/string.h:
+
+C:/Cplusplus/ffmpeg/android-ndk-r15c/platforms/android-21/arch-x86_64/usr/include/malloc.h:
+
+C:/Cplusplus/ffmpeg/android-ndk-r15c/platforms/android-21/arch-x86_64/usr/include/xlocale.h:
+
+C:/Cplusplus/ffmpeg/android-ndk-r15c/platforms/android-21/arch-x86_64/usr/include/alloca.h:
+
+C:/Cplusplus/ffmpeg/android-ndk-r15c/platforms/android-21/arch-x86_64/usr/include/strings.h:
+
+C:/Cplusplus/ffmpeg/android-ndk-r15c/platforms/android-21/arch-x86_64/usr/include/memory.h:
+
+C:/Cplusplus/ffmpeg/android-ndk-r15c/platforms/android-21/arch-x86_64/usr/include/math.h:
+
+c:\cplusplus\ffmpeg\android-ndk-r15c\toolchains\x86_64-4.9\prebuilt\windows-x86_64\lib\gcc\x86_64-linux-android\4.9.x\include-fixed\limits.h:
+
+c:\cplusplus\ffmpeg\android-ndk-r15c\toolchains\x86_64-4.9\prebuilt\windows-x86_64\lib\gcc\x86_64-linux-android\4.9.x\include-fixed\syslimits.h:
+
+C:/Cplusplus/ffmpeg/android-ndk-r15c/platforms/android-21/arch-x86_64/usr/include/limits.h:
+
+C:/Cplusplus/ffmpeg/android-ndk-r15c/platforms/android-21/arch-x86_64/usr/include/sys/limits.h:
+
+C:/Cplusplus/ffmpeg/android-ndk-r15c/platforms/android-21/arch-x86_64/usr/include/linux/limits.h:
+
+C:/Cplusplus/ffmpeg/android-ndk-r15c/platforms/android-21/arch-x86_64/usr/include/sys/syslimits.h:
+
+C:/Cplusplus/ffmpeg/android-ndk-r15c/platforms/android-21/arch-x86_64/usr/include/ctype.h:
+
+C:/Cplusplus/ffmpeg/android-ndk-r15c/platforms/android-21/arch-x86_64/usr/include/errno.h:
+
+C:/Cplusplus/ffmpeg/android-ndk-r15c/platforms/android-21/arch-x86_64/usr/include/linux/errno.h:
+
+C:/Cplusplus/ffmpeg/android-ndk-r15c/platforms/android-21/arch-x86_64/usr/include/asm/errno.h:
+
+C:/Cplusplus/ffmpeg/android-ndk-r15c/platforms/android-21/arch-x86_64/usr/include/asm-generic/errno.h:
+
+C:/Cplusplus/ffmpeg/android-ndk-r15c/platforms/android-21/arch-x86_64/usr/include/asm-generic/errno-base.h:
+
+C:/Cplusplus/ffmpeg/android-ndk-r15c/platforms/android-21/arch-x86_64/usr/include/fcntl.h:
+
+C:/Cplusplus/ffmpeg/android-ndk-r15c/platforms/android-21/arch-x86_64/usr/include/linux/fadvise.h:
+
+C:/Cplusplus/ffmpeg/android-ndk-r15c/platforms/android-21/arch-x86_64/usr/include/linux/fcntl.h:
+
+C:/Cplusplus/ffmpeg/android-ndk-r15c/platforms/android-21/arch-x86_64/usr/include/asm/fcntl.h:
+
+C:/Cplusplus/ffmpeg/android-ndk-r15c/platforms/android-21/arch-x86_64/usr/include/asm-generic/fcntl.h:
+
+C:/Cplusplus/ffmpeg/android-ndk-r15c/platforms/android-21/arch-x86_64/usr/include/linux/uio.h:
+
+C:/Cplusplus/ffmpeg/android-ndk-r15c/platforms/android-21/arch-x86_64/usr/include/unistd.h:
+
+C:/Cplusplus/ffmpeg/android-ndk-r15c/platforms/android-21/arch-x86_64/usr/include/sys/select.h:
+
+C:/Cplusplus/ffmpeg/android-ndk-r15c/platforms/android-21/arch-x86_64/usr/include/sys/time.h:
+
+C:/Cplusplus/ffmpeg/android-ndk-r15c/platforms/android-21/arch-x86_64/usr/include/linux/time.h:
+
+C:/Cplusplus/ffmpeg/android-ndk-r15c/platforms/android-21/arch-x86_64/usr/include/signal.h:
+
+C:/Cplusplus/ffmpeg/android-ndk-r15c/platforms/android-21/arch-x86_64/usr/include/asm/sigcontext.h:
+
+C:/Cplusplus/ffmpeg/android-ndk-r15c/platforms/android-21/arch-x86_64/usr/include/linux/signal.h:
+
+C:/Cplusplus/ffmpeg/android-ndk-r15c/platforms/android-21/arch-x86_64/usr/include/asm/signal.h:
+
+C:/Cplusplus/ffmpeg/android-ndk-r15c/platforms/android-21/arch-x86_64/usr/include/asm-generic/signal-defs.h:
+
+C:/Cplusplus/ffmpeg/android-ndk-r15c/platforms/android-21/arch-x86_64/usr/include/asm/siginfo.h:
+
+C:/Cplusplus/ffmpeg/android-ndk-r15c/platforms/android-21/arch-x86_64/usr/include/asm-generic/siginfo.h:
+
+C:/Cplusplus/ffmpeg/android-ndk-r15c/platforms/android-21/arch-x86_64/usr/include/sys/ucontext.h:
+
+C:/Cplusplus/ffmpeg/android-ndk-r15c/platforms/android-21/arch-x86_64/usr/include/sys/user.h:
+
+C:/Cplusplus/ffmpeg/android-ndk-r15c/platforms/android-21/arch-x86_64/usr/include/sys/sysconf.h:
+
+C:/Cplusplus/ffmpeg/android-ndk-r15c/platforms/android-21/arch-x86_64/usr/include/pathconf.h:
+
+C:/Cplusplus/ffmpeg/android-ndk-r15c/platforms/android-21/arch-x86_64/usr/include/sys/stat.h:
+
+C:/Cplusplus/ffmpeg/android-ndk-r15c/platforms/android-21/arch-x86_64/usr/include/linux/stat.h:
+
+C:/Cplusplus/ffmpeg/android-ndk-r15c/platforms/android-21/arch-x86_64/usr/include/endian.h:
+
+C:/Cplusplus/ffmpeg/android-ndk-r15c/platforms/android-21/arch-x86_64/usr/include/sys/endian.h:
+
+C:/Cplusplus/ffmpeg/android-ndk-r15c/platforms/android-21/arch-x86_64/usr/include/inttypes.h:
+
+../include/lame.h:
+
+tables.h:

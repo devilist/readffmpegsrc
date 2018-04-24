@@ -1,0 +1,6 @@
+{
+    "files.associations": {
+        "cpu.h": "c",
+        "cpu_internal.h": "c"
+    }
+}
