@@ -23,87 +23,87 @@
 
 #if !HAVE_ATOMICS_NATIVE
 
-#if HAVE_PTHREADS
+    #if HAVE_PTHREADS
 
-#include <pthread.h>
+        #include <pthread.h>
 
-static pthread_mutex_t atomic_lock = PTHREAD_MUTEX_INITIALIZER;
+        static pthread_mutex_t atomic_lock = PTHREAD_MUTEX_INITIALIZER;
 
-int avpriv_atomic_int_get(volatile int *ptr)
-{
-    int res;
+        int avpriv_atomic_int_get(volatile int *ptr)
+        {
+            int res;
 
-    pthread_mutex_lock(&atomic_lock);
-    res = *ptr;
-    pthread_mutex_unlock(&atomic_lock);
+            pthread_mutex_lock(&atomic_lock);
+            res = *ptr;
+            pthread_mutex_unlock(&atomic_lock);
 
-    return res;
-}
+            return res;
+        }
 
-void avpriv_atomic_int_set(volatile int *ptr, int val)
-{
-    pthread_mutex_lock(&atomic_lock);
-    *ptr = val;
-    pthread_mutex_unlock(&atomic_lock);
-}
+        void avpriv_atomic_int_set(volatile int *ptr, int val)
+        {
+            pthread_mutex_lock(&atomic_lock);
+            *ptr = val;
+            pthread_mutex_unlock(&atomic_lock);
+        }
 
-int avpriv_atomic_int_add_and_fetch(volatile int *ptr, int inc)
-{
-    int res;
+        int avpriv_atomic_int_add_and_fetch(volatile int *ptr, int inc)
+        {
+            int res;
 
-    pthread_mutex_lock(&atomic_lock);
-    *ptr += inc;
-    res = *ptr;
-    pthread_mutex_unlock(&atomic_lock);
+            pthread_mutex_lock(&atomic_lock);
+            *ptr += inc;
+            res = *ptr;
+            pthread_mutex_unlock(&atomic_lock);
 
-    return res;
-}
+            return res;
+        }
 
-void *avpriv_atomic_ptr_cas(void * volatile *ptr, void *oldval, void *newval)
-{
-    void *ret;
-    pthread_mutex_lock(&atomic_lock);
-    ret = *ptr;
-    if (ret == oldval)
-        *ptr = newval;
-    pthread_mutex_unlock(&atomic_lock);
-    return ret;
-}
+        void *avpriv_atomic_ptr_cas(void * volatile *ptr, void *oldval, void *newval)
+        {
+            void *ret;
+            pthread_mutex_lock(&atomic_lock);
+            ret = *ptr;
+            if (ret == oldval)
+                *ptr = newval;
+            pthread_mutex_unlock(&atomic_lock);
+            return ret;
+        }
 
-#elif !HAVE_THREADS
+        #elif !HAVE_THREADS
 
-int avpriv_atomic_int_get(volatile int *ptr)
-{
-    return *ptr;
-}
+        int avpriv_atomic_int_get(volatile int *ptr)
+        {
+            return *ptr;
+        }
 
-void avpriv_atomic_int_set(volatile int *ptr, int val)
-{
-    *ptr = val;
-}
+        void avpriv_atomic_int_set(volatile int *ptr, int val)
+        {
+            *ptr = val;
+        }
 
-int avpriv_atomic_int_add_and_fetch(volatile int *ptr, int inc)
-{
-    *ptr += inc;
-    return *ptr;
-}
+        int avpriv_atomic_int_add_and_fetch(volatile int *ptr, int inc)
+        {
+            *ptr += inc;
+            return *ptr;
+        }
 
-void *avpriv_atomic_ptr_cas(void * volatile *ptr, void *oldval, void *newval)
-{
-    if (*ptr == oldval) {
-        *ptr = newval;
-        return oldval;
-    }
-    return *ptr;
-}
+        void *avpriv_atomic_ptr_cas(void * volatile *ptr, void *oldval, void *newval)
+        {
+            if (*ptr == oldval) {
+                *ptr = newval;
+                return oldval;
+            }
+            return *ptr;
+        }
 
-#else /* HAVE_THREADS */
+    #else /* HAVE_THREADS */
 
-/* This should never trigger, unless a new threading implementation
- * without correct atomics dependencies in configure or a corresponding
- * atomics implementation is added. */
-#error "Threading is enabled, but there is no implementation of atomic operations available"
+        /* This should never trigger, unless a new threading implementation
+        * without correct atomics dependencies in configure or a corresponding
+        * atomics implementation is added. */
+        #error "Threading is enabled, but there is no implementation of atomic operations available"
 
-#endif /* HAVE_PTHREADS */
+    #endif /* HAVE_PTHREADS */
 
 #endif /* !HAVE_ATOMICS_NATIVE */

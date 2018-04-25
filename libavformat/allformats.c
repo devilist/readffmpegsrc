@@ -17,6 +17,9 @@
  * You should have received a copy of the GNU Lesser General Public
  * License along with FFmpeg; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
+ * 
+ * 注册所有的复用器，解码器 和 协议
+ * 
  */
 
 #include "libavutil/thread.h"
@@ -26,6 +29,18 @@
 #include "url.h"
 #include "version.h"
 
+/** 
+ * CONFIG_##X##_MUXER，CONFIG_##X##_DEMUXER 
+ * 定义在自动生成的config.h中
+ * 
+ * ff_##x##_muxer 为AVOutputFormat结构体，
+ * ff_##x##_demuxer为AVInputFormat结构体
+ * 一般定义在x.c文件里，路径为 libavformat\x.c
+ * 
+ **/
+
+// 注册视音频复用器 
+// av_register_output_format方法定义在\libavformat\format.c , avformat.h 
 #define REGISTER_MUXER(X, x)                                            \
     {                                                                   \
         extern AVOutputFormat ff_##x##_muxer;                           \
@@ -33,6 +48,7 @@
             av_register_output_format(&ff_##x##_muxer);                 \
     }
 
+// 注册视音频分离器(解复用器)
 #define REGISTER_DEMUXER(X, x)                                          \
     {                                                                   \
         extern AVInputFormat ff_##x##_demuxer;                          \
@@ -44,8 +60,9 @@
 
 static void register_all(void)
 {
+    // 注册所有的编解码器 \libavcodec\allcodecs.c
     avcodec_register_all();
-
+    // 注册所有的复用器和解复用器
     /* (de)muxers */
     REGISTER_MUXER   (A64,              a64);
     REGISTER_DEMUXER (AA,               aa);
@@ -387,9 +404,16 @@ static void register_all(void)
     REGISTER_DEMUXER (LIBOPENMPT,       libopenmpt);
 }
 
+/**
+ * 第一个被调用的函数，注册所有的复用器，解码器
+ **/
 void av_register_all(void)
 {
+    // AVOnce 是一个 long或char变量，用以标记注册是否完成；初始值为0，注册完成后变为1
+    // 定义在 \libavutil\thread.h 
     static AVOnce control = AV_ONCE_INIT;
-
+    // 第二个参数为函数指针 
+    // 定义在 \libavutil\thread.h 
+    // 该方法在线程中完成注册工作，并且保证仅初始化一次,线程安全
     ff_thread_once(&control, register_all);
 }

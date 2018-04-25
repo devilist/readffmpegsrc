@@ -34,7 +34,7 @@
  * @file
  * Format register and lookup
  */
-/** head of registered input format linked list */
+/** head of registered input format linked list 链表头部*/
 static AVInputFormat *first_iformat = NULL;
 /** head of registered output format linked list */
 static AVOutputFormat *first_oformat = NULL;
@@ -58,18 +58,27 @@ AVOutputFormat *av_oformat_next(const AVOutputFormat *f)
         return first_oformat;
 }
 
+/**
+ * 注册视音频分离器(解复用器)
+ */
 void av_register_input_format(AVInputFormat *format)
 {
     AVInputFormat **p = last_iformat;
-
+    
     // Note, format could be added after the first 2 checks but that implies that *p is no longer NULL
-    while(p != &format->next && !format->next && avpriv_atomic_ptr_cas((void * volatile *)p, NULL, format))
+    while(p != &format->next 
+            && !format->next 
+            && avpriv_atomic_ptr_cas((void * volatile *)p, NULL, format))
         p = &(*p)->next;
-
+        
+    // 更新链表的尾部         
     if (!format->next)
         last_iformat = &format->next;
 }
 
+/**
+ * 注册视音频复用器
+ */
 void av_register_output_format(AVOutputFormat *format)
 {
     AVOutputFormat **p = last_oformat;

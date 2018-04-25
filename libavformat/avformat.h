@@ -693,6 +693,7 @@ typedef struct AVInputFormat {
      * New public fields should be added right above.
      *****************************************************************
      */
+    // 指向链表中的下一个地址
     struct AVInputFormat *next;
 
     /**
@@ -1342,7 +1343,7 @@ typedef struct AVFormatContext {
      * Exports (de)muxer private options if they exist.
      */
     const AVClass *av_class;
-
+      
     /**
      * The input container format.
      *
@@ -1364,7 +1365,7 @@ typedef struct AVFormatContext {
      * - muxing: set by avformat_write_header()
      * - demuxing: set by avformat_open_input()
      */
-    void *priv_data;
+    void *priv_data; 
 
     /**
      * I/O context.

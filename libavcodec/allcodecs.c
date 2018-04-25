@@ -752,8 +752,13 @@ static void register_all(void)
     REGISTER_PARSER(XMA,                xma);
 }
 
+/**
+ *  注册所有的编解码器
+*/
 void avcodec_register_all(void)
 {
+    // AVOnce 是一个 long或char变量，用以标记注册是否完成；初始值为0，注册完成后变为1
+    // 定义在 \libavutil\thread.h 
     static AVOnce control = AV_ONCE_INIT;
 
     ff_thread_once(&control, register_all);
