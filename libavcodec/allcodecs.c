@@ -29,6 +29,19 @@
 #include "avcodec.h"
 #include "version.h"
 
+/**
+ * 注册所有的 硬件加速器(HWACCEL)，解码器(ENCODER)，编码器(DECODER)，Parser，Bitstream Filter
+ * 
+ * CONFIG_##X##_HWACCEL，
+ * CONFIG_##X##_ENCODER，
+ * CONFIG_##X##_DECODER
+ * 以上三个宏定义在编译后自动生成的config.h中
+ * 
+ * ff_##x##_hwaccel 为 AVHWAccel 结构体(libavcodec\avcodec.h)
+ * 
+*/
+
+// HWACCEL:hardware accelerate 硬件加速
 #define REGISTER_HWACCEL(X, x)                                          \
     {                                                                   \
         extern AVHWAccel ff_##x##_hwaccel;                              \

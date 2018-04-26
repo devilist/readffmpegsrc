@@ -176,6 +176,7 @@ int av_codec_is_decoder(const AVCodec *codec)
     return codec && (codec->decode || codec->receive_frame);
 }
 
+// 注册编解码器
 av_cold void avcodec_register(AVCodec *codec)
 {
     AVCodec **p;
@@ -1943,6 +1944,7 @@ FF_ENABLE_DEPRECATION_WARNINGS
 static AVHWAccel *first_hwaccel = NULL;
 static AVHWAccel **last_hwaccel = &first_hwaccel;
 
+// 硬件加速 注册
 void av_register_hwaccel(AVHWAccel *hwaccel)
 {
     AVHWAccel **p = last_hwaccel;

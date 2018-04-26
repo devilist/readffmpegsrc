@@ -3734,6 +3734,20 @@ typedef struct AVCodecDefault AVCodecDefault;
 struct AVSubtitle;
 
 /**
+ * 
+ * AVCodec ff_h263_encoder = {
+    .name           = "h263",
+    .long_name      = NULL_IF_CONFIG_SMALL("H.263 / H.263-1996"),
+    .type           = AVMEDIA_TYPE_VIDEO,
+    .id             = AV_CODEC_ID_H263,
+    .priv_data_size = sizeof(MpegEncContext),
+    .init           = ff_mpv_encode_init,
+    .encode2        = ff_mpv_encode_picture,
+    .close          = ff_mpv_encode_end,
+    .pix_fmts= (const enum AVPixelFormat[]){AV_PIX_FMT_YUV420P, AV_PIX_FMT_NONE},
+    .priv_class     = &h263_class,
+};
+ * 
  * AVCodec.
  */
 typedef struct AVCodec {
@@ -3861,6 +3875,7 @@ int av_codec_get_max_lowres(const AVCodec *codec);
 struct MpegEncContext;
 
 /**
+ * 硬件加速
  * @defgroup lavc_hwaccel AVHWAccel
  * @{
  */

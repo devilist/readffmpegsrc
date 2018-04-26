@@ -508,6 +508,23 @@ typedef struct AVProbeData {
 #define AVFMT_SEEK_TO_PTS   0x4000000 /**< Seeking is based on PTS */
 
 /**
+ * 
+ * AVOutputFormat ff_mp3_muxer = {
+    .name              = "mp3",
+    .long_name         = NULL_IF_CONFIG_SMALL("MP3 (MPEG audio layer 3)"),
+    .mime_type         = "audio/mpeg",
+    .extensions        = "mp3",
+    .priv_data_size    = sizeof(MP3Context),
+    .audio_codec       = AV_CODEC_ID_MP3,
+    .video_codec       = AV_CODEC_ID_PNG,
+    .write_header      = mp3_write_header,
+    .write_packet      = mp3_write_packet,
+    .write_trailer     = mp3_write_trailer,
+    .query_codec       = query_codec,
+    .flags             = AVFMT_NOTIMESTAMPS,
+    .priv_class        = &mp3_muxer_class,
+};
+ * 
  * @addtogroup lavf_encoding
  * @{
  */
@@ -644,6 +661,21 @@ typedef struct AVOutputFormat {
  */
 
 /**
+ * 
+ * AVInputFormat ff_mov_demuxer = {
+    .name           = "mov,mp4,m4a,3gp,3g2,mj2",
+    .long_name      = NULL_IF_CONFIG_SMALL("QuickTime / MOV"),
+    .priv_class     = &mov_class,
+    .priv_data_size = sizeof(MOVContext),
+    .extensions     = "mov,mp4,m4a,3gp,3g2,mj2",
+    .read_probe     = mov_probe,
+    .read_header    = mov_read_header,
+    .read_packet    = mov_read_packet,
+    .read_close     = mov_read_close,
+    .read_seek      = mov_read_seek,
+    .flags          = AVFMT_NO_BYTE_SEEK,
+};
+ * 
  * @addtogroup lavf_decoding
  * @{
  */
@@ -651,6 +683,7 @@ typedef struct AVInputFormat {
     /**
      * A comma separated list of short names for the format. New names
      * may be appended with a minor bump.
+     * 格式名字，用逗号隔开
      */
     const char *name;
 
@@ -677,6 +710,7 @@ typedef struct AVInputFormat {
 
     const struct AVCodecTag * const *codec_tag;
 
+    // \libavutil\log.h
     const AVClass *priv_class; ///< AVClass for the private context
 
     /**
@@ -703,6 +737,7 @@ typedef struct AVInputFormat {
 
     /**
      * Size of private data so that it can be allocated in the wrapper.
+     * 标示具体的文件容器格式对应的Context的大小，例如MOV格式对应的是MovContext
      */
     int priv_data_size;
 
