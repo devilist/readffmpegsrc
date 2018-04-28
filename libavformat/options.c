@@ -131,6 +131,7 @@ static void io_close_default(AVFormatContext *s, AVIOContext *pb)
 
 static void avformat_get_context_defaults(AVFormatContext *s)
 {
+    // 分配内存块
     memset(s, 0, sizeof(AVFormatContext));
 
     s->av_class = &av_format_context_class;
@@ -141,15 +142,20 @@ static void avformat_get_context_defaults(AVFormatContext *s)
     av_opt_set_defaults(s);
 }
 
+// 创建一个 AVFormatContext
+// 函数原型在 \libavformat\avformat.h
 AVFormatContext *avformat_alloc_context(void)
 {
     AVFormatContext *ic;
+    // 分配内存地址 \libavutil\mem.c \libavutil\mem.h
     ic = av_malloc(sizeof(AVFormatContext));
     if (!ic) return ic;
+    // 设置默认值
     avformat_get_context_defaults(ic);
 
     ic->internal = av_mallocz(sizeof(*ic->internal));
     if (!ic->internal) {
+        // 释放并返回null  \libavformat\utils.c
         avformat_free_context(ic);
         return NULL;
     }

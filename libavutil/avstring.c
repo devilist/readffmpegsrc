@@ -84,7 +84,7 @@ size_t av_strlcpy(char *dst, const char *src, size_t size)
 {
     size_t len = 0;
     while (++len < size && *src)
-        *dst++ = *src++;
+        *dst++ = *src++; // 先取出 *src ,然后执行整个运算表达式,运算完后执行 src++
     if (len <= size)
         *dst = 0;
     return len + strlen(src) - 1;

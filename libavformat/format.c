@@ -282,6 +282,7 @@ int av_probe_input_buffer2(AVIOContext *pb, AVInputFormat **fmt,
     int score = 0;
     int ret2;
 
+    // 校验最多能探测多少字节的数据
     if (!max_probe_size)
         max_probe_size = PROBE_BUF_MAX;
     else if (max_probe_size < PROBE_BUF_MIN) {
@@ -312,6 +313,7 @@ int av_probe_input_buffer2(AVIOContext *pb, AVInputFormat **fmt,
     }
 #endif
 
+    // 循环一直到探测完指定字节的数据
     for (probe_size = PROBE_BUF_MIN; probe_size <= max_probe_size && !*fmt;
          probe_size = FFMIN(probe_size << 1,
                             FFMAX(max_probe_size, probe_size + 1))) {

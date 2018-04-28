@@ -390,6 +390,7 @@ int av_demuxer_open(AVFormatContext *ic) {
     return 0;
 }
 
+// 打开输入媒体，探测AVInputFormat结构体(如果为null的话)
 /* Open input file and probe the format if necessary. */
 static int init_input(AVFormatContext *s, const char *filename,
                       AVDictionary **options)
@@ -401,23 +402,32 @@ static int init_input(AVFormatContext *s, const char *filename,
     if (s->pb) {
         s->flags |= AVFMT_FLAG_CUSTOM_IO;
         if (!s->iformat)
+            // 如果AVInputFormat没指定，用pb读取媒体数据进行探测得到iformat
             return av_probe_input_buffer2(s->pb, &s->iformat, filename,
                                          s, 0, s->format_probesize);
         else if (s->iformat->flags & AVFMT_NOFILE)
+            // AVFMT_NOFILE宏定义表示不需要操作文件
+            // 如果pb指定了AVInputFormat，就提示报错
             av_log(s, AV_LOG_WARNING, "Custom AVIOContext makes no sense and "
                                       "will be ignored with AVFMT_NOFILE format.\n");
         return 0;
     }
 
+    // 一般会走到这个分支
+    // 如果已经指定了iformat，则不需要探测了
+    // 如果没指定iformat，通过文件名filename和函数av_probe_input_format2探测
     if ((s->iformat && s->iformat->flags & AVFMT_NOFILE) ||
         (!s->iformat && (s->iformat = av_probe_input_format2(&pd, 0, &score))))
         return score;
 
+    // 如果从文件名中也探测不到媒体格式，只有打开文件进行探测了，这一步先打开文件
+    // 最后通过av_probe_input_buffer2函数探测
     if ((ret = s->io_open(s, &s->pb, filename, AVIO_FLAG_READ | s->avio_flags, options)) < 0)
         return ret;
 
     if (s->iformat)
         return 0;
+    // 探测
     return av_probe_input_buffer2(s->pb, &s->iformat, filename,
                                  s, 0, s->format_probesize);
 }
@@ -507,6 +517,10 @@ FF_ENABLE_DEPRECATION_WARNINGS
 }
 
 
+// 打开媒体文件源 \libavformat\avformat.h
+// fmt为要打开的媒体格式结构体，可以传入一个定义好的，也可以为null
+// 如果传入定义好的fmt,打开文件后就不会探测文件格式了，如果为null,
+// ffmpeg会自动探测
 int avformat_open_input(AVFormatContext **ps, const char *filename,
                         AVInputFormat *fmt, AVDictionary **options)
 {
@@ -515,25 +529,28 @@ int avformat_open_input(AVFormatContext **ps, const char *filename,
     AVDictionary *tmp = NULL;
     ID3v2ExtraMeta *id3v2_extra_meta = NULL;
 
+    // 创建上下文结构
     if (!s && !(s = avformat_alloc_context()))
         return AVERROR(ENOMEM);
     if (!s->av_class) {
         av_log(NULL, AV_LOG_ERROR, "Input context has not been properly allocated by avformat_alloc_context() and is not NULL either\n");
         return AVERROR(EINVAL);
     }
+    // 如果指定了AVInputFormat，直接使用
     if (fmt)
         s->iformat = fmt;
 
     if (options)
-        av_dict_copy(&tmp, *options, 0);
+        av_dict_copy(&tmp, *options, 0); // \libavutil\dict.c
 
     if (s->pb) // must be before any goto fail
-        s->flags |= AVFMT_FLAG_CUSTOM_IO;
+        s->flags |= AVFMT_FLAG_CUSTOM_IO;  // The caller has supplied a custom AVIOContext, don't avio_close() it
 
-    if ((ret = av_opt_set_dict(s, &tmp)) < 0)
+    if ((ret = av_opt_set_dict(s, &tmp)) < 0) // \libavutil\opt.c
         goto fail;
-
+    // \libavutil\avstring.c
     av_strlcpy(s->filename, filename ? filename : "", sizeof(s->filename));
+    // 打开输入媒体，初始化全部与媒体读写有关的结构体(AVIOContext,AVInputFormat)
     if ((ret = init_input(s, filename, &tmp)) < 0)
         goto fail;
     s->probe_score = ret;
@@ -560,6 +577,7 @@ int avformat_open_input(AVFormatContext **ps, const char *filename,
         goto fail;
     }
 
+    // 设置初始播放位置
     avio_skip(s->pb, s->skip_initial_bytes);
 
     /* Check filename in case an image number is expected. */
@@ -572,6 +590,8 @@ int avformat_open_input(AVFormatContext **ps, const char *filename,
 
     s->duration = s->start_time = AV_NOPTS_VALUE;
 
+    // 分配私有数据 priv_data
+    // 私有数据在读写操作时用到，大小在定义AVInputFormat时已指定
     /* Allocate private data. */
     if (s->iformat->priv_data_size > 0) {
         if (!(s->priv_data = av_mallocz(s->iformat->priv_data_size))) {
@@ -4299,6 +4319,7 @@ void ff_free_stream(AVFormatContext *s, AVStream *st)
     free_stream(&s->streams[ --s->nb_streams ]);
 }
 
+// 释放 上下文 AVFormatContext
 void avformat_free_context(AVFormatContext *s)
 {
     int i;
@@ -4845,6 +4866,7 @@ int avformat_query_codec(const AVOutputFormat *ofmt, enum AVCodecID codec_id,
     return AVERROR_PATCHWELCOME;
 }
 
+// 注册网络协议
 int avformat_network_init(void)
 {
 #if CONFIG_NETWORK

@@ -146,6 +146,7 @@ void av_fast_padded_mallocz(void *ptr, unsigned int *size, size_t min_size)
 static AVCodec *first_avcodec = NULL;
 static AVCodec **last_avcodec = &first_avcodec;
 
+// 获得指向链表下一个解码器的指针
 AVCodec *av_codec_next(const AVCodec *c)
 {
     if (c)

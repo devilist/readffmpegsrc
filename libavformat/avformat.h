@@ -1359,13 +1359,15 @@ enum AVDurationEstimationMethod {
 typedef struct AVFormatInternal AVFormatInternal;
 
 /**
+ * 封装了当前文件格式的上下文
+ * 
  * Format I/O context.
  * New fields can be added to the end with minor version bumps.
  * Removal, reordering and changes to existing fields require a major
  * version bump.
  * sizeof(AVFormatContext) must not be used outside libav*, use
  * avformat_alloc_context() to create an AVFormatContext.
- *
+ * 用avformat_alloc_context()方法生成 AVFormatContext，函数实现在 \libavformat\options.c
  * Fields can be accessed through AVOptions (av_opt*),
  * the name string used matches the associated command line parameter name and
  * can be found in libavformat/options_table.h.
@@ -2065,6 +2067,7 @@ AVInputFormat  *av_iformat_next(const AVInputFormat  *f);
 AVOutputFormat *av_oformat_next(const AVOutputFormat *f);
 
 /**
+ * 函数实现在 \libavformat\options.c
  * Allocate an AVFormatContext.
  * avformat_free_context() can be used to free the context and everything
  * allocated by the framework within it.
@@ -2243,6 +2246,9 @@ int av_probe_input_buffer(AVIOContext *pb, AVInputFormat **fmt,
                           unsigned int offset, unsigned int max_probe_size);
 
 /**
+ * 打开媒体文件源 
+ * 函数实现 \libavformat\utils.c
+ * 
  * Open an input stream and read the header. The codecs are not opened.
  * The stream must be closed with avformat_close_input().
  *

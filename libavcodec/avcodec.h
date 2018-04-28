@@ -3734,6 +3734,7 @@ typedef struct AVCodecDefault AVCodecDefault;
 struct AVSubtitle;
 
 /**
+ * 存储编解码器信息的结构体
  * 
  * AVCodec ff_h263_encoder = {
     .name           = "h263",
@@ -3746,7 +3747,7 @@ struct AVSubtitle;
     .close          = ff_mpv_encode_end,
     .pix_fmts= (const enum AVPixelFormat[]){AV_PIX_FMT_YUV420P, AV_PIX_FMT_NONE},
     .priv_class     = &h263_class,
-};
+    }
  * 
  * AVCodec.
  */
@@ -3757,23 +3758,28 @@ typedef struct AVCodec {
      * encoder and a decoder can share the same name).
      * This is the primary way to find a codec from the user perspective.
      */
-    const char *name;
+    const char *name; // 编解码器的名字 简称
     /**
      * Descriptive name for the codec, meant to be more human readable than name.
      * You should use the NULL_IF_CONFIG_SMALL() macro to define it.
      */
-    const char *long_name;
-    enum AVMediaType type;
+    const char *long_name; // 编解码器的名字 全称
+    enum AVMediaType type; // 类型  视频，音频，还是字幕  \libavutil\avutil.h
     enum AVCodecID id;
     /**
      * Codec capabilities.
      * see AV_CODEC_CAP_*
      */
     int capabilities;
+    // 支持的帧率（仅视频）
     const AVRational *supported_framerates; ///< array of supported framerates, or NULL if any, array is terminated by {0,0}
+    // 支持的像素格式（仅视频） \libavutil\pixfmt.h
     const enum AVPixelFormat *pix_fmts;     ///< array of supported pixel formats, or NULL if unknown, array is terminated by -1
+    // 支持的采样率（仅音频）
     const int *supported_samplerates;       ///< array of supported audio samplerates, or NULL if unknown, array is terminated by 0
+    // 支持的采样格式（仅音频） \libavutil\samplefmt.h
     const enum AVSampleFormat *sample_fmts; ///< array of supported sample formats, or NULL if unknown, array is terminated by -1
+    // 支持的声道数（仅音频）
     const uint64_t *channel_layouts;         ///< array of support channel layouts, or NULL if unknown. array is terminated by 0
     uint8_t max_lowres;                     ///< maximum value for lowres supported by the decoder
     const AVClass *priv_class;              ///< AVClass for the private context
