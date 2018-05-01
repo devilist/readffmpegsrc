@@ -396,7 +396,11 @@ static int init_input(AVFormatContext *s, const char *filename,
                       AVDictionary **options)
 {
     int ret;
+    // 包含用来嗅探文件格式的信息 \libavformat\avformat.h
     AVProbeData pd = { filename, NULL, 0 };
+    // score变量用于判断是否找到了合适的AVInputFormat
+    // 最后计算出的scroe如果低于门限值，则认为没找到合适的AVInputFormat
+    // score越高则表明越有可能找到正确的AVInputFormat
     int score = AVPROBE_SCORE_RETRY;
 
     if (s->pb) {
@@ -610,7 +614,9 @@ int avformat_open_input(AVFormatContext **ps, const char *filename,
     if (s->pb)
         ff_id3v2_read_dict(s->pb, &s->internal->id3v2_meta, ID3v2_DEFAULT_MAGIC, &id3v2_extra_meta);
 
-
+    // 调用init_input()完成基本的初始化，并且已经探测到AVFormatInput后，
+    // 通过AVFormatInput的read_header()函数读取媒体文件的头文件，并完成相应的初始化工作
+    // read_header()函数实现在各个ff_xx_demuxer中
     if (!(s->flags&AVFMT_FLAG_PRIV_OPT) && s->iformat->read_header)
         if ((ret = s->iformat->read_header(s)) < 0)
             goto fail;

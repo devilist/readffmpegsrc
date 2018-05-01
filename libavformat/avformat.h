@@ -456,6 +456,7 @@ typedef struct AVFrac {
 struct AVCodecTag;
 
 /**
+ * 包含用来嗅探文件格式的信息
  * This structure contains the data a format has to probe a file.
  */
 typedef struct AVProbeData {
@@ -2196,6 +2197,9 @@ AVInputFormat *av_find_input_format(const char *short_name);
 AVInputFormat *av_probe_input_format(AVProbeData *pd, int is_opened);
 
 /**
+ * 
+ * \libavformat\format.c
+ * 
  * Guess the file format.
  *
  * @param pd        data to be probed

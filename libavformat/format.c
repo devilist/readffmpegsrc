@@ -210,11 +210,14 @@ AVInputFormat *av_probe_input_format3(AVProbeData *pd, int is_opened,
     }
 
     fmt = NULL;
+    // 从链表中依次取出注册的AVInputFormat进行判断
     while ((fmt1 = av_iformat_next(fmt1))) {
         if (!is_opened == !(fmt1->flags & AVFMT_NOFILE) && strcmp(fmt1->name, "image2"))
             continue;
         score = 0;
+        // 通过read_probe()取出score分数
         if (fmt1->read_probe) {
+            // read_probe()函数实现在各个ff_xx_demuxer中
             score = fmt1->read_probe(&lpd);
             if (score)
                 av_log(NULL, AV_LOG_TRACE, "Probing %s score:%d size:%d\n", fmt1->name, score, lpd.buf_size);
@@ -233,9 +236,11 @@ AVInputFormat *av_probe_input_format3(AVProbeData *pd, int is_opened,
                 }
             }
         } else if (fmt1->extensions) {
+            // 通过扩展名判断
             if (av_match_ext(lpd.filename, fmt1->extensions))
                 score = AVPROBE_SCORE_EXTENSION;
         }
+        // 比较输入媒体的mime_type和AVInputFormat的mime_type
         if (av_match_name(lpd.mime_type, fmt1->mime_type)) {
             if (AVPROBE_SCORE_MIME > score) {
                 av_log(NULL, AV_LOG_DEBUG, "Probing %s score:%d increased to %d due to MIME type\n", fmt1->name, score, AVPROBE_SCORE_MIME);
@@ -255,6 +260,10 @@ AVInputFormat *av_probe_input_format3(AVProbeData *pd, int is_opened,
     return fmt;
 }
 
+// \libavformat\avformat.h
+// 根据输入数据查找合适的AVInputFormat
+// is_opened 文件是否打开
+// 
 AVInputFormat *av_probe_input_format2(AVProbeData *pd, int is_opened, int *score_max)
 {
     int score_ret;

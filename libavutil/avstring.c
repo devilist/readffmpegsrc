@@ -339,7 +339,7 @@ int av_escape(char **dst, const char *src, const char *special_chars,
         return dstbuf.len;
     }
 }
-
+// 比较字符串，不区分大小写
 int av_match_name(const char *name, const char *names)
 {
     const char *p;
