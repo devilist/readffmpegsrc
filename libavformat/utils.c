@@ -501,6 +501,9 @@ static int update_stream_avctx(AVFormatContext *s)
             st->parser = NULL;
         }
 
+        // 将st->codecpar即AVCodecParameters结构体数据
+        // 复制到st->internal->avctx即AVCodeContext
+        // /libavcodec/utils.c
         /* update internal codec context, for the parser */
         ret = avcodec_parameters_to_context(st->internal->avctx, st->codecpar);
         if (ret < 0)
@@ -508,6 +511,8 @@ static int update_stream_avctx(AVFormatContext *s)
 
 #if FF_API_LAVF_AVCTX
 FF_DISABLE_DEPRECATION_WARNINGS
+        // 兼容低版本 将st->codecpar即AVCodecParameters结构体数据
+        // 复制到st->codec即AVCodeContext
         /* update deprecated public codec context */
         ret = avcodec_parameters_to_context(st->codec, st->codecpar);
         if (ret < 0)
@@ -654,8 +659,9 @@ int avformat_open_input(AVFormatContext **ps, const char *filename,
 
     s->internal->raw_packet_buffer_remaining_size = RAW_PACKET_BUFFER_SIZE;
 
+    // 初始化 AVStream
     update_stream_avctx(s);
-
+    // id 
     for (i = 0; i < s->nb_streams; i++)
         s->streams[i]->internal->orig_codec_id = s->streams[i]->codecpar->codec_id;
 
@@ -3520,7 +3526,8 @@ static int extract_extradata(AVStream *st, AVPacket *pkt)
 
     return 0;
 }
-
+// 寻找流
+// /libavformat/avformat.h
 int avformat_find_stream_info(AVFormatContext *ic, AVDictionary **options)
 {
     int i, count = 0, ret = 0, j;
@@ -3560,7 +3567,7 @@ int avformat_find_stream_info(AVFormatContext *ic, AVDictionary **options)
                avio_tell(ic->pb), ic->pb->bytes_read, ic->pb->seek_count, ic->nb_streams);
 
     for (i = 0; i < ic->nb_streams; i++) {
-        const AVCodec *codec;
+        const AVCodec *codec; // 存储编解码器信息的结构体
         AVDictionary *thread_opt = NULL;
         st = ic->streams[i];
         avctx = st->internal->avctx;
@@ -3608,6 +3615,7 @@ FF_ENABLE_DEPRECATION_WARNINGS
         if (st->request_probe <= 0)
             st->internal->avctx_inited = 1;
 
+        // 寻找合适的解码器
         codec = find_probe_decoder(ic, st, st->codecpar->codec_id);
 
         /* Force thread count to 1 since the H.264 decoder will not extract
