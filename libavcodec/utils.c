@@ -1273,7 +1273,7 @@ AVCodec *avcodec_find_encoder_by_name(const char *name)
     }
     return NULL;
 }
-
+// \libavcodec\avcodec.h
 AVCodec *avcodec_find_decoder(enum AVCodecID id)
 {
     return find_encdec(id, 0);

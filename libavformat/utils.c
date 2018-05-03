@@ -1742,6 +1742,7 @@ FF_ENABLE_DEPRECATION_WARNINGS
     return ret;
 }
 
+// \libavformat\avformat.h
 int av_read_frame(AVFormatContext *s, AVPacket *pkt)
 {
     const int genpts = s->flags & AVFMT_FLAG_GENPTS;
@@ -3636,6 +3637,7 @@ FF_ENABLE_DEPRECATION_WARNINGS
         // Try to just open decoders, in case this is enough to get parameters.
         if (!has_codec_parameters(st, NULL) && st->request_probe <= 0) {
             if (codec && !avctx->codec)
+                // 打开解码器
                 if (avcodec_open2(avctx, codec, options ? &options[i] : &thread_opt) < 0)
                     av_log(ic, AV_LOG_WARNING,
                            "Failed to open codec in %s\n",__FUNCTION__);
